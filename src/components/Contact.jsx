@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  CheckCircle2,
+  ExternalLink,
+} from "lucide-react";
 
 const CONTACT_EMAIL = "zerabek@gmail.com";
+const LOCATION_URL = "https://maps.app.goo.gl/Gi3eNUarqVSHNviR7?g_st=awb";
+const MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=5.5324861%2C-0.437192&z=17&output=embed";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -117,126 +127,167 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Contact Form */}
-          <div className="bg-[#121212] border border-gray-800 rounded-2xl p-8 lg:col-span-2 shadow-2xl">
-            {submitted ? (
-              <div className="py-16 text-center space-y-4">
-                <div className="inline-flex bg-red-600/20 text-red-500 p-4 rounded-full mb-2">
-                  <CheckCircle2 size={48} />
-                </div>
-                <h3 className="text-2xl font-bold text-white">
-                  Email Ready to Send
-                </h3>
-                <p className="text-gray-400 max-w-md mx-auto text-sm">
-                  Your email app should open with your request addressed to{" "}
-                  {CONTACT_EMAIL}. Please review it and press Send to deliver
-                  your message. If no email app opens, email us directly at{" "}
-                  {CONTACT_EMAIL}.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-4 bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-6 py-2.5 rounded-full transition-colors"
-                >
-                  Send Another Request
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-white/70  font-semibold mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
-                    />
+          {/* Right Contact Form and Location Map */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="bg-[#121212] border border-gray-800 rounded-2xl p-8 shadow-2xl">
+              {submitted ? (
+                <div className="py-16 text-center space-y-4">
+                  <div className="inline-flex bg-red-600/20 text-red-500 p-4 rounded-full mb-2">
+                    <CheckCircle2 size={48} />
                   </div>
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="johndoe@example.com"
-                      className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
-                    />
-                  </div>
+                  <h3 className="text-2xl font-bold text-white">
+                    Email Ready to Send
+                  </h3>
+                  <p className="text-gray-400 max-w-md mx-auto text-sm">
+                    Your email app should open with your request addressed to{" "}
+                    {CONTACT_EMAIL}. Please review it and press Send to deliver
+                    your message. If no email app opens, email us directly at{" "}
+                    {CONTACT_EMAIL}.
+                  </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="mt-4 bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-6 py-2.5 rounded-full transition-colors"
+                  >
+                    Send Another Request
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider text-white/70  font-semibold mb-2">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Your full name"
+                        className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="johndoe@example.com"
+                        className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
+                      />
+                    </div>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+233 123 456 789"
-                      className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+233 123 456 789"
+                        className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
+                        Service Type
+                      </label>
+                      <select
+                        name="service"
+                        required
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="Gate Motors">Gate Motors</option>
+                        <option value="Garage Doors">Garage Doors</option>
+                        <option value="Electric Fence">Electric Fence</option>
+                        <option value="CCTV Cameras">CCTV Cameras</option>
+                        <option value="General Electrical Works">
+                          General Electrical Works
+                        </option>
+                        <option value="Full Smart Automation">
+                          Full Smart Automation
+                        </option>
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
-                      Service Type
-                    </label>
-                    <select
-                      name="service"
-                      required
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="Gate Motors">Gate Motors</option>
-                      <option value="Garage Doors">Garage Doors</option>
-                      <option value="Electric Fence">Electric Fence</option>
-                      <option value="CCTV Cameras">CCTV Cameras</option>
-                      <option value="General Electrical Works">
-                        General Electrical Works
-                      </option>
-                      <option value="Full Smart Automation">
-                        Full Smart Automation
-                      </option>
-                    </select>
-                  </div>
-                </div>
 
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
+                      Project Notes
+                    </label>
+                    <textarea
+                      name="notes"
+                      rows="4"
+                      required
+                      value={formData.notes}
+                      onChange={handleChange}
+                      placeholder="Tell us about what you need"
+                      className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors resize-none"
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg transition-all flex items-center justify-center gap-2"
+                  >
+                    <Send size={16} /> Send Request
+                  </button>
+                </form>
+              )}
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border border-gray-800 bg-[#121212] shadow-2xl">
+              <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/70 font-semibold mb-2">
-                    Project Notes
-                  </label>
-                  <textarea
-                    name="notes"
-                    rows="4"
-                    required
-                    value={formData.notes}
-                    onChange={handleChange}
-                    placeholder="Tell us about what you need"
-                    className="w-full bg-[#0a0a0a] border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-600 transition-colors resize-none"
-                  ></textarea>
+                  <div className="mb-2 flex items-center gap-2 text-red-500">
+                    <MapPin size={18} />
+                    <span className="text-xs font-bold uppercase tracking-widest">
+                      Find our engineering HQ
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white">
+                    Kasoa, Central Region.
+                  </h3>
+                  {/* <p className="mt-1 text-sm text-gray-400">
+                    Visit us at our exact location.
+                  </p> */}
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg transition-all flex items-center justify-center gap-2"
+                <a
+                  href={LOCATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700"
                 >
-                  <Send size={16} /> Send Request
-                </button>
-              </form>
-            )}
+                  Get directions <ExternalLink size={16} />
+                </a>
+              </div>
+              <div className="h-[320px] border-t border-gray-800 sm:h-[400px]">
+                <iframe
+                  title="Map to Zerabek Electricals in Kasoa"
+                  src={MAP_EMBED_URL}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
