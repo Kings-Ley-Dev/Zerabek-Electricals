@@ -1,7 +1,7 @@
 # React + Vite
 
 ## Link to the Website: 
-https://zerabek-electricals.vercel.app 
+https://zerabekelectricals.com 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
